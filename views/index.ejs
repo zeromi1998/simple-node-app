@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <div class="form-inline mt-5 justify-content-center">
+        <label  for="email">Add user</label>
+      </div>
+    <form class="form-inline mt-3 justify-content-center" action="/" method="POST">
+       <input type="text" class="form-control ml-3 " placeholder="Enter Name" name="name">
+      
+       <input type="text" class="form-control ml-3" placeholder="Enter Location" name="location">
+       <button type="submit" class="btn btn-primary ml-3">Add</button>
+      </form>
+
+    <!-- <div class="form-inline mt-5 justify-content-center">
+    <a href="/adduser" class="justify-content-center mk-3"><button type="submit" class="btn btn-primary ml-3 ">Create new User</button></a>
+</div> -->
+      <div class="form-inline mt-5 justify-content-center">
+        <label  >Enter name or location of user</label>
+      </div>
+      
+      <div  class="form-inline mt-2 justify-content-center">
+          
+        <input type="text" class="form-control ml-3" placeholder="Search" id="search-input"  onkeyup="searchUser()">
+        
+    </div>
+
+
+    <div  class="container mt-5 ">
+   
+    <table class="table table-striped table-responsive text-center ml-3  ">
+        <thead >
+            <tr >
+                <th>Name of user</th>
+                <th>Location of user</th>
+            </tr>
+      
+        </thead>
+        <tbody id="myTable" >
+            
+                
+            
+                           
+         
+            
+            <% data.forEach(function(user){ %>
+                           
+                <tr>
+                            <td>
+                                <%= user.name %>
+                               
+                            </td>
+
+                            <td>
+                                <%= user.location %>
+                            </td>
+                </tr>
+              <%     }) %>
+                            
+       
+              
+           
+             
+                
+            
+                   
+        </tbody>
+      
+      </table>
+   
+    </div>
+    <script>
+
+      
+
+        function searchUser(){
+            
+            let filter =document.getElementById("search-input").value.toUpperCase();
+
+             let myTable=document.getElementById("myTable")
+
+                let tr=myTable.getElementsByTagName("tr")
+                
+            for (var i=0; i < tr.length ; i++){
+                
+                let td=tr[i].getElementsByTagName("td")[0]
+
+                if(td){
+                    let textValue=td.textContent || td.innerHTML
+
+                    if(textValue.toUpperCase().indexOf(filter)> -1){
+
+                        tr[i].style.display="";
+
+                    }
+                    else{
+                        tr[i].style.display="none";
+                    }
+                }
+            }
+
+
+            
+        }
+
+
+                   
+               
+            
+        
+
+    </script>
+</body>
+</html>
